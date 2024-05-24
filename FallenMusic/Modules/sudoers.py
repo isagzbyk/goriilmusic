@@ -26,9 +26,8 @@ from pyrogram.types import Message
 from config import OWNER_ID
 from FallenMusic import SUDOERS, app
 
-
 @app.on_message(filters.command(["addsudo"]) & filters.user(OWNER_ID))
-async def sudoadd(_, message: Message):
+async def sudo_ekle(_, message: Message):
     try:
         await message.delete()
     except:
@@ -36,35 +35,34 @@ async def sudoadd(_, message: Message):
     if not message.reply_to_message:
         if len(message.command) != 2:
             return await message.reply_text(
-                "» ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ's ᴍᴇssᴀɢᴇ ᴏʀ ɢɪᴠᴇ ᴜsᴇʀɴᴀᴍᴇ/ᴜsᴇʀ ɪᴅ."
+                "» Yanıt olarak bir kullanıcının mesajına yanıt verin veya kullanıcı adı / kullanıcı kimliği verin."
             )
         user = message.text.split(None, 1)[1]
         if "@" in user:
             user = user.replace("@", "")
         user = await app.get_users(user)
         if int(user.id) in SUDOERS:
-            return await message.reply_text(f"» {user.mention} ɪs ᴀʟʀᴇᴀᴅʏ ᴀ sᴜᴅᴏ ᴜsᴇʀ.")
+            return await message.reply_text(f"» {user.mention} zaten bir süper kullanıcı.")
         try:
             SUDOERS.add(int(user.id))
-            await message.reply_text(f"ᴀᴅᴅᴇᴅ {user.mention} ɪɴ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ.")
+            await message.reply_text(f"{user.mention} süper kullanıcılar listesine eklendi.")
         except:
-            return await message.reply_text("ғᴀɪʟᴇᴅ ᴛᴏ ᴀᴅᴅ ᴜsᴇʀ ɪɴ sᴜᴅᴏᴇʀs.")
+            return await message.reply_text("Kullanıcıyı süper kullanıcı listesine eklemekte başarısız oldum.")
 
     if message.reply_to_message.from_user.id in SUDOERS:
         return await message.reply_text(
-            f"» {message.reply_to_message.from_user.mention} ɪs ᴀʟʀᴇᴀᴅʏ ᴀ sᴜᴅᴏ ᴜsᴇʀ."
+            f"» {message.reply_to_message.from_user.mention} zaten bir süper kullanıcı."
         )
     try:
         SUDOERS.add(message.reply_to_message.from_user.id)
         await message.reply_text(
-            f"ᴀᴅᴅᴇᴅ {message.reply_to_message.from_user.mention} ɪɴ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ."
+            f"{message.reply_to_message.from_user.mention} süper kullanıcılar listesine eklendi."
         )
     except:
-        return await message.reply_text("ғᴀɪʟᴇᴅ ᴛᴏ ᴀᴅᴅ ᴜsᴇʀ ɪɴ sᴜᴅᴏᴇʀs.")
-
+        return await message.reply_text("Kullanıcıyı süper kullanıcı listesine eklemekte başarısız oldum.")
 
 @app.on_message(filters.command(["delsudo", "rmsudo"]) & filters.user(OWNER_ID))
-async def sudodel(_, message: Message):
+async def sudo_sil(_, message: Message):
     try:
         await message.delete()
     except:
@@ -72,7 +70,7 @@ async def sudodel(_, message: Message):
     if not message.reply_to_message:
         if len(message.command) != 2:
             return await message.reply_text(
-                "» ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ's ᴍᴇssᴀɢᴇ ᴏʀ ɢɪᴠᴇ ᴜsᴇʀɴᴀᴍᴇ/ᴜsᴇʀ ɪᴅ."
+                "» Yanıt olarak bir kullanıcının mesajına yanıt verin veya kullanıcı adı / kullanıcı kimliği verin."
             )
         user = message.text.split(None, 1)[1]
         if "@" in user:
@@ -80,39 +78,38 @@ async def sudodel(_, message: Message):
         user = await app.get_users(user)
         if int(user.id) not in SUDOERS:
             return await message.reply_text(
-                f"» {user.mention} ɪs ɴᴏᴛ ɪɴ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ."
+                f"» {user.mention} süper kullanıcılar listesinde değil."
             )
         try:
             SUDOERS.remove(int(user.id))
             return await message.reply_text(
-                f"» ʀᴇᴍᴏᴠᴇᴅ {user.mention} ғʀᴏᴍ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ."
+                f"» {user.mention} süper kullanıcılar listesinden kaldırıldı."
             )
         except:
-            return await message.reply_text(f"ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴜsᴇʀ ғʀᴏᴍ sᴜᴅᴏᴇʀs.")
+            return await message.reply_text(f"Kullanıcıyı süper kullanıcılar listesinden kaldırmada başarısız oldum.")
     else:
         user_id = message.reply_to_message.from_user.id
         if int(user_id) not in SUDOERS:
             return await message.reply_text(
-                f"» {message.reply_to_message.from_user.mention} ɪs ɴᴏᴛ ɪɴ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ."
+                f"» {message.reply_to_message.from_user.mention} süper kullanıcılar listesinde değil."
             )
         try:
             SUDOERS.remove(int(user_id))
             return await message.reply_text(
-                f"» ʀᴇᴍᴏᴠᴇᴅ {message.reply_to_message.from_user.mention} ғʀᴏᴍ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ."
+                f"» {message.reply_to_message.from_user.mention} süper kullanıcılar listesinden kaldırıldı."
             )
         except:
-            return await message.reply_text(f"ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇᴍᴏᴠᴇ ᴜsᴇʀ ғʀᴏᴍ sᴜᴅᴏᴇʀs.")
-
+            return await message.reply_text(f"Kullanıcıyı süper kullanıcılar listesinden kaldırmada başarısız oldum.")
 
 @app.on_message(filters.command(["sudolist", "sudoers", "sudo"]))
-async def sudoers_list(_, message: Message):
-    hehe = await message.reply_text("» ɢᴇᴛᴛɪɴɢ sᴜᴅᴏ ᴜsᴇʀs ʟɪsᴛ...")
-    text = "<u>🥀 **ᴏᴡɴᴇʀ :**</u>\n"
-    count = 0
+async def sudoers_liste(_, message: Message):
+    mesaj = await message.reply_text("» Süper kullanıcılar listesi alınıyor...")
+    text = "<u>🥀 **Sahip :**</u>\n"
+    sayac = 0
     user = await app.get_users(OWNER_ID)
     user = user.first_name if not user.mention else user.mention
-    count += 1
-    text += f"{count}➤ {user}\n"
+    sayac += 1
+    text += f"{sayac}➤ {user}\n"
     smex = 0
     for user_id in SUDOERS:
         if user_id != OWNER_ID:
@@ -121,12 +118,12 @@ async def sudoers_list(_, message: Message):
                 user = user.first_name if not user.mention else user.mention
                 if smex == 0:
                     smex += 1
-                    text += "\n<u>✨ **sᴜᴅᴏᴇʀs :**</u>\n"
-                count += 1
-                text += f"{count}➤ {user}\n"
+                    text += "\n<u>✨ **Süper Kullanıcılar :**</u>\n"
+                sayac += 1
+                text += f"{sayac}➤ {user}\n"
             except Exception:
                 continue
     if not text:
-        await message.reply_text("» ɴᴏ sᴜᴅᴏ ᴜsᴇʀs ғᴏᴜɴᴅ.")
+        await message.reply_text("» Süper kullanıcı bulunamadı.")
     else:
-        await hehe.edit_text(text)
+        await mesaj.edit_text(text)
