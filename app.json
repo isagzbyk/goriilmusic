@@ -1,7 +1,7 @@
 {
-    "name": "BRANDED-KING-MUSIC",
+    "name": "GORIL-MUSİC-BOT",
     "description": "A VC Player Bot for telegram videochats, written in Python with Pyrogram and Py-Tgcalls.",
-    "logo": "https://te.legra.ph/file/6a4ac076ff159bdcf9656.jpg",
+    "logo": "https://telegra.ph/goril-04-21.jpg",
     "keywords": [
     "python3",
     "telegram",
@@ -28,7 +28,7 @@
       },
       "OWNER_ID": {
         "description": "Fill your user id here. (Must be integer)",
-        "value": "6258877205",
+        "value": "5821033842",
         "required": true
       },
       "SESSION": {
@@ -43,7 +43,7 @@
       },
       "SUPPORT_CHAT": {
         "description": "Link of your telegram support group. (Must pe public)",
-        "value": "https://t.me/BRANDED_WORLD",
+        "value": "https://t.me/+50QL-_IgUhUzMzdk",
         "required": false
       }
     },
