@@ -1,14 +1,14 @@
 ━━━━━━━━━━━━━━━━━━━━
 
 <h2 align="center">
-    ──「 𝗕𝗥𝗔𝗡𝗗𝗘𝗗 𝗞𝗜𝗡𝗚 𝗠𝗨𝗦𝗜𝗖 𝟭 」──
+    ──「 ✨𝗚𝗼𝗿𝗶𝗹 𝗠𝘂𝘇𝗶𝗸✨ 𝟭 」──
 </h2>
 
 <p align="center">
-  <img src="https://te.legra.ph/file/3c01d6c523a5c65e5ea71.jpg">
+  <img src="https://iili.io/JQdc5rb.jpg">
 </p>
 
-_**ᴀᴠᴀɪʟᴀʙʟᴇ ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ ᴀs [ᴋʜᴜꜱʜɪ ✘ ᴍᴜꜱɪᴄ](https://t.me/KHUSHI_MUSIC76_BOT)**_
+_****_
 ━━━━━━━━━━━━━━━━━━━━
 
 <p align="center">
